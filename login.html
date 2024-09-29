@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login/Signup</title>
+  <link rel="stylesheet" href="login.css" />
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+
+<body>
+  <header>
+  <nav class="navbar">
+    <h1>            The Constitution Hub
+    </h1>
+    <div class="navbar-links">
+      <p class="navbar-link"><a href="index.html">Home</a></p>
+      <p class="navbar-link"><a href="#About-us">About Us</a></p>
+      <p class="navbar-link"><a href="support.html">Support</a></p>
+    </div>
+    <div class="navbar-menu-toggle" onclick="shownavbar()">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+  </nav>
+  </header>
+  <div class="side-navbar">
+    <p style="text-align: right" onclick="closenavbar()">
+      <i class="fa-solid fa-xmark" style="color: white"></i>
+    </p>
+    <div class="side-navbar-links">
+      <p class="side-navbar-link"><a href="index.html">Home</a></p>
+      <p class="side-navbar-link"><a href="">About Us</a></p>
+      <p class="side-navbar-link"><a href="support.html">Support</a></p>
+    </div>
+  </div>
+  
+  <div id="container" class="container">
+    <div class="row">
+      <div class="col align-items-center flex-col sign-up">
+        <div class="form-wrapper align-items-center">
+          <div class="form sign-up">
+            <h2>Create New Account</h2>
+            <div class="input-group">
+              <input type="text" id="signup-username" placeholder="Username" />
+            </div>
+            <div class="input-group">
+              <input type="number" id="phoneno" placeholder="Phonenumber" />
+            </div>
+
+            <div class="input-group">
+              <input type="email" id="signup-email" class="signup-email" placeholder="Enter Email" />
+            </div>
+
+            <div class="input-group corporate-field" id="Addharno" style="display: none">
+              <input type="number" placeholder="Enter Aadhaar Card no" />
+            </div>
+
+            <div class="input-group corporate-field" id="GSTno" style="display: none">
+              <input type="number" placeholder="Enter GST no" />
+            </div>
+
+            <div class="input-group corporate-field" id="Accountno" style="display: none">
+              <input type="number" placeholder="Enter Account no" />
+            </div>
+
+            <div class="input-group">
+              <input type="password" id="signup-password" placeholder="Password" />
+            </div>
+            <div class="otpverify">
+              <input type="text" id="otp_inp" placeholder="Enter the OTP..." />
+              <button class="btn" id="otp-btn">Verify</button>
+            </div>
+            <button class="btn" id="send-otp-button" onclick="sendOTP()">
+              Send OTP
+            </button>
+            <button id="signup-btn" class="btn" style="display: none" onclick="signUp()">
+              Sign up
+            </button>
+            <p>
+              <span>Already have an account?</span>
+              <b onclick="toggle()" class="pointer">Sign in here</b>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col align-items-center flex-col sign-in">
+        <div class="form-wrapper align-items-center">
+          <div class="form sign-in">
+            <h2>LOGIN</h2>
+            <div class="input-group">
+              <input type="text" id="login-username" placeholder="Username" />
+            </div>
+            <div class="input-group">
+              <input type="password" id="login-password" placeholder="Password" />
+            </div>
+            <button onclick="login()">Sign in</button>
+            <p>
+              <b>Forgot password?</b>
+            </p>
+            <p>
+              <span>Don't have an account?</span>
+              <b onclick="toggle()" class="pointer">Sign up here</b>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row content-row">
+      <div class="col align-items-center flex-col">
+        <div class="text sign-in">
+          <h2>Welcome</h2>
+        </div>
+        <div class="img sign-in"></div>
+      </div>
+      <div class="col align-items-center flex-col">
+        <div class="img sign-up"></div>
+        <div class="text sign-up">
+          <h2>Join with us</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+  <script src="script.js"></script>
+  <script>
+    function toggleCorporateFields() {
+      const corporateFields = document.querySelectorAll(".corporate-field");
+      const corporateUser = document.getElementById("corporateuser").checked;
+
+      corporateFields.forEach((field) => {
+        field.style.display = corporateUser ? "block" : "none";
+      });
+    }
+  </script>
+</body>
+
+</html>

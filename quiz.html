@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7646FE;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #a29bfe;
+            border-radius: 20px;
+            padding: 30px;
+            width: 500px;
+            text-align: center;
+        }
+        .question {
+            background-color: #fff;
+            color: #280A82; /* Changed text color */
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-top: 60px; /* Space for the image */
+        }
+        .question p {
+            font-size: 20px; /* Increased font size */
+            font-weight: bold; /* Made text bold */
+            margin-top: 15px; /* Added some top margin for spacing */
+        }
+        .question img {
+            position: absolute;
+            top: -40px; /* Adjusted to move image up */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Increased image size */
+            height: 100px; /* Maintain aspect ratio */
+            border-radius: 20px;
+            padding: 10px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            color: #7646FE;
+            font-size: 18px; /* Increased font size */
+            font-weight: 500; /* Added some weight to make it more readable */
+        }
+        .options button.correct {
+            background-color: #f39c12;
+        }
+        .result {
+            display: none;
+            text-align: center;
+        }
+        .result .stars {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .result .stars span {
+            font-size: 40px;
+            margin: 0 5px;
+        }
+        .result button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #f39c12;
+        }
+        .timer-bar {
+            height: 5px;
+            background-color: #f39c12;
+            margin-bottom: 20px; /* Increased margin for the gap */
+            border-radius: 5px;
+        }
+        .circular-timer {
+            margin: 20px auto 40px; /* Increased bottom margin */
+            width: 120px;
+            height: 120px;
+            border: 5px solid #f39c12;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+        }
+        .header {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Article 58</h1>
+        <div class="timer-bar" id="timer-bar"></div>
+        <div class="circular-timer" id="circular-timer">30</div>
+        <div class="question">
+            <img src="pencil.jpeg" alt="Pencil">
+            <p>Which of the following is not true with regard to the conditions to be eligible to President Candidate Election?</p>
+        </div>
+        <div class="options">
+            <button onclick="checkAnswer(this, false)">He/She must be citizen of India</button>
+            <button onclick="checkAnswer(this, true)">He/She must have completed 45 years of age</button>
+            <button onclick="checkAnswer(this, false)">The candidate must be qualified for election to the Lok Sabha</button>
+        </div>
+        <div class="result" id="result">
+            <h2>Nice Work</h2>
+            <div class="stars">
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+            </div>
+            <button onclick="nextStage()">Next Stage</button>
+            <button onclick="playAgain()">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft = 30;
+        const timerBar = document.getElementById('timer-bar');
+        const circularTimer = document.getElementById('circular-timer');
+        const result = document.getElementById('result');
+        const options = document.querySelector('.options');
+
+        function startTimer() {
+            const timerInterval = setInterval(() => {
+                timeLeft--;
+                circularTimer.textContent = timeLeft;
+                timerBar.style.width = (timeLeft / 30) * 100 + '%';
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    showResult(false);
+                }
+            }, 1000);
+        }
+
+        function checkAnswer(button, isCorrect) {
+            options.style.pointerEvents = 'none';
+            if (isCorrect) {
+                button.classList.add('correct');
+                window.location.href = 'success.html';
+            } else {
+                button.style.backgroundColor = '#e74c3c';
+                alert('Wrong answer');
+            }
+        }
+
+        function showResult(success) {
+            if (success) {
+                result.style.display = 'block';
+            } else {
+                alert('Time is up');
+            }
+        }
+
+        function nextStage() {
+            alert('Next Stage');
+            // Redirect to next stage
+        }
+
+        function playAgain() {
+            alert('Play Again');
+            // Reload the game
+        }
+
+        window.onload = startTimer;
+    </script>
+</body>
+</html>

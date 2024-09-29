@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse; /* Reverse the order of flex items */
+        }
+        .header h1 {
+            margin: 0;
+            text-size-adjust: 10px;
+        }
+        .profile-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .Chat-bot {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .progress {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .progress-bar {
+            background-color: #f97316;
+            height: 10px;
+            border-radius: 5px;
+            width: 25%;
+        }
+        .options {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .option {
+            position: relative;  /* Add this */
+            flex: 1;
+            margin: 0 10px;
+            background-color: transparent;
+            box-shadow: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .option img {
+            max-width: 50%;
+            height: auto;
+        }
+        .gtbtn {
+            z-index: 2;
+            text-align: center;
+            margin: auto;
+            display: flex;
+            color: white;
+        }
+        .gtbtn a {
+            color: white;
+            text-decoration: none;
+        }
+        .pbtn {
+            position: absolute;
+            bottom: 31px;  /* Adjust as needed */
+            left: 50%; /* Changed from right: 27% to left: 50% */
+            transform: translateX(-50%); /* Added to center the button */
+            z-index: 2;
+            text-align: center;
+            margin: auto;
+            display: flex; 
+            width: auto; /* Added to ensure the button takes its content width */
+            white-space: nowrap; /* Added to prevent text wrapping */
+        }
+        .options{
+    position: relative;
+    flex-basis: 20%;
+}
+
+.gtbtn{
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    margin-top: 11px;
+    color: white;
+    position: absolute;
+    top: 70%;
+    left: 40%;
+    border-radius: 5px;
+    background-color: #f97316;
+    border: none;
+
+}
+
+.pbtn{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+    margin-top: 11px;
+    color: white;
+    position: absolute;
+    top: 70%;
+    left: 50%; /* Changed from right: 27% to left: 50% */
+    transform: translateX(-50%); /* Added to center the button */
+    border-radius: 5px; 
+    background-color:#f97316;
+    border: none;
+    width: auto; /* Added to ensure the button takes its content width */
+    white-space: nowrap; /* Added to prevent text wrapping */
+}
+        .learning-plan {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        .quote {
+            background-color: #e0e7ff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        footer {
+            background-color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1200px;
+            box-sizing: border-box;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            padding: 0 20px;
+        }
+        footer .icon {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .options {
+                flex-direction: column;
+            }
+            .option {
+                margin: 10px 0;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --progress-bar-width: 200px;
+            --progress-bar-height: 200px;
+            --font-size: 2rem;
+        }
+        
+        .circular-progress {
+            width: var(--progress-bar-width);
+            height: var(--progress-bar-height);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-color: black;
+        }
+        .inner-circle {
+            position: absolute;
+            width: calc(var(--progress-bar-width) - 30px);
+            height: calc(var(--progress-bar-height) - 30px);
+            border-radius: 50%;
+            background-color: rgba(211, 211, 211, 0.135);
+        }
+
+        .percentage {
+            position: relative;
+            font-size: var(--font-size);
+            color: rgb(0, 0, 0, 0.8);
+        }
+        
+        .progress-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .progress-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: conic-gradient(#3498db var(--progress), black);
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .progress-circle::before {
+            content: attr(data-progress) '%';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 14px;
+        }
+
+        .progress-content {
+            flex: 1;
+        }
+
+        .progress-content h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .progress-ratio {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .progress h1 {
+            margin-bottom: 10px;
+        }
+
+        .progress-text {
+            margin-bottom: 10px;
+        }
+
+        .progress-text strong {
+            font-size: 20px;
+        }
+        
+        .dropdown {
+            position: static;
+        }
+
+        .dropdown-content {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            margin-top: 5px;
+            display: none;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>Hi, Harish</h1>
+                <p>Let's start learning our Indian Constitution</p>
+            </div>
+            <div class="header-content">
+                <img src="Mask Group (1).png" alt="Profile Photo" class="profile-photo">
+                <img src="ChatBot.png" alt="ChatBot" class="Chat-bot">
+            </div>
+        </div>
+        <div class="progress">
+            <h1>Learned today</h1>
+            <p class="progress-text"><strong>5min</strong> / 20min</p>
+            <div class="progress-bar"></div>
+        </div>
+        <h1>What do you want to learn today?</h1>
+            
+        <div class="options">
+            <div class="option">
+                <img src="GetStarted.png" alt="Get Started">
+                <button class="gtbtn"><strong><a href="Spin the wheel.html">Get Started</a></strong></button>
+            </div>
+            <div class="option">
+                <img src="play.png" alt="Play">
+                <div class="dropdown">
+                    <button class="pbtn" onclick="toggleDropdown()"><strong>Play</strong></button>
+                    <div id="playDropdown" class="dropdown-content">
+                        <a href="snakeandladder.html">1. Snake and Ladder</a>
+                        <a href="Cardsgame.html">2. Memory Card Game</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="learning-plan">
+            <h2>Learning Plan</h2>
+            <div class="progress-item">
+                <div class="progress-circle" data-progress="80"></div>
+                <div class="progress-content">
+                    <h3>Part V constitution</h3>
+                    <span class="progress-ratio">79/99</span>
+                </div>
+            </div>
+            <div class="progress-item">
+                <div class="progress-circle" data-progress="7"></div>
+                <div class="progress-content">
+                    <h3>Part VI constitution</h3>
+                    <span class="progress-ratio">6/85</span>
+                </div>
+            </div>
+        </div>
+        <div class="quote">
+            <p>"The Constitution is not a mere lawyer's document; it is a vehicle of Life, and its spirit is always the spirit of Age"</p>
+        </div>
+        <footer>
+            <div class="footer-content">
+                <div class="icon"><a href="intropage.html">🏠</a></div>
+                <div class="icon"><a href="courses.html">🔍</a></div>
+                <div class="icon">👤</div>
+            </div>
+        </footer>
+        </div>
+    </div>
+</body>
+<script>
+function toggleDropdown() {
+    document.getElementById("playDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.pbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+</script>
+</html>

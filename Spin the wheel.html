@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin the Wheel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffffff; /* Changed to white */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .profile-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+            font-family: 'Arial', sans-serif; /* Changed font */
+            font-weight: bold; /* Made text bold */
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .wheel-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wheel-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+        #canvas {
+            width: 100%;
+            height: 100%;
+        }
+        .image-container {
+            width: 200px;
+            height: auto;
+            margin-right: 20px;
+            background-color: #ffffff; /* Added white background */
+        }
+        .spin-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+        .proceed-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ffcc00;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .proceed-button .proceed-link {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .center-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+            border-radius: 50%;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="intropage.html" class="back-button">BACK TO HOME</a>
+            <img src="Mask Group (1).png" alt="Profile Photo" class="profile-photo">
+        </div>
+        <h2 class="title">Spin to choose your lesson for the day</h2>
+        <div class="wheel-section">
+            <div class="image-container">
+                <!-- Updated image style -->
+                <img src="Manstanding.jpeg" alt="Man Standing" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div id="wheel-container" class="wheel-container">
+                <canvas id="canvas"></canvas>
+                <img src="spinhere-image.jpeg" alt="Center Image" class="center-image">
+            </div>
+        </div>
+        <button id="spin-button" class="spin-button">SPIN</button>
+        <div id="result" class="result">YOU WILL BE LEARNING CHAPTER 1 OF PART V TODAY!!</div>
+        <button class="proceed-button"><a href="courses.html" class="proceed-link">PROCEED</a></button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const segments = [
+            "PART VI - CHAPTER 6", "PART VI - CHAPTER 5", "PART VI - CHAPTER 4", 
+            "PART VI - CHAPTER 2", "PART VI - CHAPTER 1", "PART V - CHAPTER 5", 
+            "PART V - CHAPTER 4", "PART V - CHAPTER 3", "PART V - CHAPTER 2", 
+            "PART V - CHAPTER 1", "PART I - CHAPTER 2", "PART I - CHAPTER 1", 
+            "SPIN AGAIN"
+        ];
+        const segmentColors = ["#ffcc00", "#66cc66", "#ffcc00", "#66cc66", "#ffcc00", "#66cc66", "#ffcc00", "#66cc66", "#ffcc00", "#66cc66", "#ffcc00", "#66cc66", "#ffcc00"];
+        const spinButton = document.getElementById('spin-button');
+        const result = document.getElementById('result');
+        const numSegments = segments.length;
+        let startAngle = 0;
+        const arcSize = (2 * Math.PI) / numSegments;
+        let spinTimeout = null;
+        const spinAngleStart = 10;
+        let spinTime = 0;
+        const spinTimeTotal = Math.random() * 3000 + 4000;
+
+        canvas.width = canvas.height = 500;
+
+        const drawSegment = (index, start, arc, color, text) => {
+            ctx.beginPath();
+            ctx.fillStyle = color;
+            ctx.moveTo(250, 250);
+            ctx.arc(250, 250, 250, start, start + arc);
+            ctx.lineTo(250, 250);
+            ctx.fill();
+            ctx.save();
+            ctx.translate(250, 250);
+            ctx.rotate(start + arc / 2);
+            ctx.textAlign = 'right';
+            ctx.fillStyle = '#000';
+            ctx.font = 'bold 16px Arial';
+            ctx.fillText(text, 240, 0);
+            ctx.restore();
+        };
+
+        const drawWheel = () => {
+            for (let i = 0; i < numSegments; i++) {
+                const angle = startAngle + i * arcSize;
+                drawSegment(i, angle, arcSize, segmentColors[i], segments[i]);
+            }
+        };
+
+        const rotateWheel = () => {
+            startAngle += (spinTime / spinTimeTotal) * spinAngleStart;
+            spinTime += 30;
+            if (spinTime >= spinTimeTotal) {
+                stopRotateWheel();
+            } else {
+                drawWheel();
+                spinTimeout = setTimeout(rotateWheel, 30);
+            }
+        };
+
+        const stopRotateWheel = () => {
+            clearTimeout(spinTimeout);
+            const degrees = (startAngle * 180 / Math.PI) % 360;
+            const index = Math.floor((360 - degrees) / arcSize) % numSegments;
+            result.textContent = `YOU WILL BE LEARNING ${segments[index]} TODAY!!`;
+        };
+
+        spinButton.addEventListener('click', () => {
+            spinTime = 0;
+            rotateWheel();
+        });
+
+        drawWheel();
+    </script>
+</body>
+</html>

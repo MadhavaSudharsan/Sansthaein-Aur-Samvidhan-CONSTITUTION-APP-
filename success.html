@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7646FE;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: #7646FE;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .tick-circle {
+            width: 100px;
+            height: 100px;
+            background-color: #f39c12;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+        }
+        .tick-circle img {
+            width: 60%;
+            height: 60%;
+        }
+        .stars {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .stars span {
+            font-size: 30px;
+            margin: 0 5px;
+        }
+        .stars span:nth-child(2) {
+            font-size: 40px;
+        }
+        .points {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .next-stage {
+            background-color: #f39c12;
+            color: #fff;
+        }
+        .play-again {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+        .home-icon {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 40px; /* Reduced from 60px to 40px */
+            height: 40px; /* Reduced from 60px to 40px */
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+        .home-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="home-icon" onclick="goToCourses()">
+            <img src="homeimg.png" alt="Home">
+        </div>
+        <h2>Nice Work</h2>
+        <div class="tick-circle">
+            <img src="tick.jpeg" alt="Tick">
+        </div>
+        <div class="stars">
+            <span>⭐</span>
+            <span>⭐</span>
+            <span>⭐</span>
+        </div>
+        <div class="points">You Earned 100 pts</div>
+        <button class="next-stage" onclick="nextStage()">Next Stage</button>
+        <button class="play-again" onclick="playAgain()">Play Again</button>
+    </div>
+
+    <script>
+        function nextStage() {
+            // Redirect to next stage
+            alert('Next Stage');
+        }
+
+        function playAgain() {
+            // Redirect to quiz.html
+            window.location.href = 'quiz.html';
+        }
+
+        function goToCourses() {
+            window.location.href = 'courses.html';
+        }
+    </script>
+</body>
+</html>

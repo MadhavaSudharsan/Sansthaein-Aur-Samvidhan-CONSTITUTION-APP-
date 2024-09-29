@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Memory Card Game</title>
+    <style>
+      body {
+  min-height: 100vh;
+  min-width: 100vh;
+  background-color: #12181f;
+  color: white;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.actions button {
+    padding: 8px 16px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: #27ae60;
+    color: white;
+}
+
+.grid-container {
+  display: grid;
+  justify-content: center;
+  grid-gap: 16px;
+  grid-template-columns: repeat(6, 140px);
+  grid-template-rows: repeat(2, calc(140px / 2 * 3));
+}
+
+.card {
+  width: 140px;  /* Increased from 100px */
+  height: 210px; /* Increased from 150px, maintaining 2:3 aspect ratio */
+  margin: 5px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #333;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.card-front {
+  background: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-back {
+  background: #6FA8DC;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  margin: 5px;
+}
+
+.front-image {
+  width: 60px;
+  height: 60px;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.card .front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card .back {
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='25' height='25' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0,0%,100%,1)'/><path d='M25 30a5 5 0 110-10 5 5 0 010 10zm0-25a5 5 0 110-10 5 5 0 010 10zM0 30a5 5 0 110-10 5 5 0 010 10zM0 5A5 5 0 110-5 5 5 0 010 5zm12.5 12.5a5 5 0 110-10 5 5 0 010 10z'  stroke-width='1' stroke='none' fill='hsla(174, 100%, 29%, 1)'/><path d='M0 15a2.5 2.5 0 110-5 2.5 2.5 0 010 5zm25 0a2.5 2.5 0 110-5 2.5 2.5 0 010 5zM12.5 2.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5zm0 25a2.5 2.5 0 110-5 2.5 2.5 0 010 5z'  stroke-width='1' stroke='none' fill='hsla(187, 100%, 42%, 1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+  background-position: center center;
+  background-size: cover;
+  backface-visibility: hidden;
+}
+
+.card .front {
+  transform: rotateY(180deg);
+}
+
+    </style>
+  </head>
+  <body>
+    <h1>Memory Cards</h1>
+    <div class="grid-container">
+    </div>
+    <p>Score: <span class="score">0</span></p>
+    <div class="actions">
+        <button onclick="restart()">Restart</button>
+    </div>
+    <script>
+      let firstCard, secondCard;
+      let lockBoard = false;
+      let score = 0;
+
+      const gridContainer = document.querySelector(".grid-container");
+      let cards = [];
+
+      // Modify the fetch function to process the data
+      fetch("./data/cards.json")
+        .then((res) => res.json())
+        .then((data) => {
+          cards = processCardData(data);
+          shuffleCards();
+          generateCards();
+        })
+        .catch(error => console.error('Error loading cards:', error));
+
+      // New function to process card data
+      function processCardData(data) {
+        let processedCards = [];
+        data.forEach(item => {
+          item.images.forEach((image, index) => {
+            processedCards.push({
+              name: `${item.name}-${index}`,
+              image: image,
+              matchName: item.name
+            });
+          });
+        });
+        return processedCards;
+      }
+
+      function shuffleCards() {
+        let currentIndex = cards.length,
+          randomIndex,
+          temporaryValue;
+        while (currentIndex !== 0) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+          temporaryValue = cards[currentIndex];
+          cards[currentIndex] = cards[randomIndex];
+          cards[randomIndex] = temporaryValue;
+        }
+      }
+
+      function generateCards() {
+        for (let card of cards) {
+          const cardElement = createCard(card);
+          gridContainer.appendChild(cardElement);
+        }
+      }
+
+      function flipCard() {
+        if (lockBoard) return;
+        if (this === firstCard) return;
+
+        this.classList.add("flipped");
+
+        if (!firstCard) {
+          firstCard = this;
+          return;
+        }
+
+        secondCard = this;
+        score++;
+        document.querySelector(".score").textContent = score;
+        lockBoard = true;
+
+        checkForMatch();
+      }
+
+      function createCard(cardData) {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.name = cardData.matchName; // Use matchName for matching
+
+        const front = document.createElement('div');
+        front.className = 'card-face card-front';
+
+        const img = document.createElement('img');
+        img.src = cardData.image;
+        img.className = 'card-image';
+        img.onerror = () => console.error(`Failed to load image: ${cardData.image}`);
+        img.onload = () => console.log(`Successfully loaded image: ${cardData.image}`);
+        front.appendChild(img);
+
+        const back = document.createElement('div');
+        back.className = 'card-face card-back';
+
+        card.appendChild(front);
+        card.appendChild(back);
+
+        card.addEventListener('click', flipCard);
+
+        return card;
+      }
+
+      // Make sure this function is defined
+      function checkForMatch() {
+        let isMatch = firstCard.dataset.name === secondCard.dataset.name;
+
+        isMatch ? disableCards() : unflipCards();
+      }
+
+      // Ensure these functions are defined
+      function disableCards() {
+        firstCard.removeEventListener("click", flipCard);
+        secondCard.removeEventListener("click", flipCard);
+
+        resetBoard();
+      }
+
+      function unflipCards() {
+        setTimeout(() => {
+          firstCard.classList.remove("flipped");
+          secondCard.classList.remove("flipped");
+          resetBoard();
+        }, 1000);
+      }
+
+      function resetBoard() {
+        [firstCard, secondCard] = [null, null];
+        lockBoard = false;
+      }
+
+      function restart() {
+        resetBoard();
+        shuffleCards();
+        score = 0;
+        document.querySelector(".score").textContent = score;
+        gridContainer.innerHTML = "";
+        generateCards();
+      }
+
+    </script>
+  </body>
+</html>

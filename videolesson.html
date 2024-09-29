@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article 58</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .course-item .text .duration {
+            color: orange;
+        }    
+        .video-section {
+            width: 100%;
+            height: 400px; /* Adjust the height as needed */
+            background-color: #000;
+        }
+        .video-section video {
+            width: 100%;
+            height: 100%;
+        }
+        .text-content {
+            margin: 20px 0;
+        }
+        .text-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .text-content p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .course-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .course-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .course-item .number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #888;
+            margin-right: 20px;
+        }
+        .course-item .text {
+            flex-grow: 1;
+            margin-right: 20px;
+        }
+        .course-item .button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .like-button, .quiz-button {
+            padding: 13px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .like-button {
+            background-color: #ffe5e5;
+            color: #ff6b6b;
+            display: flex;
+            align-items: center;
+        }
+        .like-button .star {
+            margin-right: 5px;
+        }
+        .quiz-button {
+            background-color: #007bff;
+            color: white;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="video-section">
+            <video controls>
+                <source src="Article58video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="text-content">
+            <h2>About this Article 58</h2>
+            <p>This is Article 58 of Part V of the Indian Constitution. This article deals with the conditions to be met by a candidate in order to be elected as the President of India.</p>
+        </div>
+        <div class="course-section">
+            <div class="course-item">
+                <div class="number">01</div>
+                <div class="text">
+                    <p>Welcome to the Course</p>
+                    <p class="duration">30 secs</p>
+                </div>
+                <button class="button" onclick="togglePlayPause(this)">
+                    <svg id="playPauseIcon" viewBox="0 0 64 64" width="24" height="24">
+                        <polygon id="playIcon" points="16,8 56,32 16,56" fill="#ffffff"/>
+                        <rect id="pauseIcon1" x="16" y="8" width="12" height="48" fill="#ffffff" display="none"/>
+                        <rect id="pauseIcon2" x="36" y="8" width="12" height="48" fill="#ffffff" display="none"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="course-item">
+                <div class="number">02</div>
+                <div class="text">
+                    <p>Eligibility conditions for a President</p>
+                    <p class="duration">58 secs</p>
+                </div>
+                <button class="button" onclick="togglePlayPause(this)">
+                    <svg id="playPauseIcon" viewBox="0 0 64 64" width="24" height="24">
+                        <polygon id="playIcon" points="16,8 56,32 16,56" fill="#ffffff"/>
+                        <rect id="pauseIcon1" x="16" y="8" width="12" height="48" fill="#ffffff" display="none"/>
+                        <rect id="pauseIcon2" x="36" y="8" width="12" height="48" fill="#ffffff" display="none"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="buttons">
+            <button class="like-button">
+                <span class="star">⭐</span> Like
+            </button>
+            <button class="quiz-button" onclick="window.location.href='quiz.html'">Take quiz</button>
+        </div>
+    </div>
+
+    <script>
+        function togglePlayPause(button) {
+            const playIcon = button.querySelector('#playIcon');
+            const pauseIcon1 = button.querySelector('#pauseIcon1');
+            const pauseIcon2 = button.querySelector('#pauseIcon2');
+            if (playIcon.style.display === 'none') {
+                playIcon.style.display = 'block';
+                pauseIcon1.style.display = 'none';
+                pauseIcon2.style.display = 'none';
+                console.log('Pause video');
+            } else {
+                playIcon.style.display = 'none';
+                pauseIcon1.style.display = 'block';
+                pauseIcon2.style.display = 'block';
+                console.log('Play video');
+            }
+        }
+    </script>
+</body>
+</html>

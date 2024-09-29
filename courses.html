@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The President</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .profile-photo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+        header .profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #e2e2e5;
+        }
+        .search-bar button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .buttons .button {
+            flex: 1;
+            padding: 10px;
+            margin: 0 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+        }
+        .buttons .button img {
+            width: 300px;
+            height: 300px;
+        }
+        .buttons .button p {
+            margin: 10px 0 0;
+            font-size: 16px;
+        }
+        .articles {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .articles h2 {
+            margin: 0 0 20px;
+            font-size: 20px;
+        }
+        .article {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .article:last-child {
+            border-bottom: none;
+        }
+        .article img {
+            width: 60px;
+            height: 60px;
+            margin-right: 20px;
+        }
+        .article .content {
+            flex: 1;
+        }
+        .article .content h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .article .content p {
+            margin: 5px 0 0;
+            color: #666;
+        }
+        .article a {
+            text-decoration: none;
+            color: inherit;
+        }
+        footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1200px; /* Match the container max-width */
+        }
+        footer .icon {
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Get Started with Lessons</h1>
+            <img src="Mask Group (1).png" alt="Profile Photo" class="profile-photo">
+        </header>
+        <div class="search-bar">
+            <input type="text" placeholder="Find Article...">
+            <button>Search</button>
+        </div>
+        <div class="buttons">
+            <div class="button">
+                <img src="Know the law.jpeg" alt="Know the law">
+            </div>
+            <div class="button">
+                <img src="Implement.jpeg" alt="Implement">
+            </div>
+        </div>
+        <div class="articles">
+            <h2>Explore the Part V of the Constitution</h2>
+            <div class="article">
+                <img src="ThePresident.jpeg" alt="Article 56">
+                <div class="content">
+                    <h3><a href="next-page.html">Term of office of President</a></h3>
+                    <p>Article 56</p>
+                </div>
+            </div>
+            <div class="article">
+                <img src="ThePresident.jpeg" alt="Article 57">
+                <div class="content">
+                    <h3><a href="next-page.html">Eligibility for re-election</a></h3>
+                    <p>Article 57</p>
+                </div>
+            </div>
+            <div class="article">
+                <img src="ThePresident.jpeg" alt="Article 58">
+                <div class="content">
+                    <h3><a href="videolesson.html">Qualifications for election as President</a></h3>
+                    <p>Article 58</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="icon"><a href="intropage.html">🏠</a></div>
+            <div class="icon">🔍</div>
+            <div class="icon">👤</div>
+        </footer>
+    </div>
+</body>
+</html>

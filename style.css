@@ -1,0 +1,375 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+i{
+    color: #1d232c;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    height: 70px;
+
+}
+
+.navbar-links {
+    display: flex;
+    column-gap: 20px;
+}
+
+.navbar-links a {
+    text-decoration: none;
+    color: #1d232c;
+}
+
+.navbar-links a:hover {
+    text-decoration: underline;
+    color: #1d232c;
+}
+
+.navbar-menu-toggle {
+    display: none;
+}
+
+.side-navbar {
+    background-color: #1d232c;
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -60%;
+    padding: 20px;
+    color: white;
+    transition: 2s;
+    z-index: 1;
+}
+
+.side-navbar-link {
+    margin-bottom: 30px;
+}
+
+.side-navbar-links a:hover {
+
+    text-decoration: underline;
+}
+
+.side-navbar-links a {
+    color: white;
+    text-decoration: none;
+}
+
+
+
+.getbtn {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    color: #1d232c;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 7px;
+
+}
+
+.getbtn:hover{
+    color: white;
+    background-color: #1d232c;
+}
+
+.bg-image {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: relative;
+    border: #1d232c solid;
+    background-image: url('https://www.shutterstock.com/image-vector/trendy-halftone-collage-hands-two-pin-2377140525');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.getbtn {
+    position: absolute;
+}
+
+ .h2{
+    display: block;
+    padding: 10px;
+    margin: 10px;
+}
+
+.service-container-2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.service-container-2 div{
+    background-color: #F2F4F7;
+    border-radius: 5px;
+    padding: 10px;
+    word-spacing: 3px;
+    
+}
+.service-container-2 h4{
+    font-size: large;
+    font-weight: bold;
+    display: inline;
+    word-spacing: 3px;
+    
+   }
+
+.Why-Choose-Us{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.Why-Choose-Us div{
+    background-color: #F2F4F7;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    word-spacing: 3px;
+}
+
+.Why-Choose-Us p {
+ font-size: large;
+ font-weight: bold;
+ display: inline;
+ word-spacing: 3px;
+}
+
+.Why-Choose-Us ul {
+    list-style-type: none; 
+    padding-left: 0; 
+}
+
+.Why-Choose-Us li {
+    padding-left: 0; 
+    word-spacing: 3px;
+}
+
+footer {
+    background:#F2F4F7 ;
+    padding: 40px 0;
+    text-align: left;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .footer-section {
+    margin: 20px;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .footer-section h2,
+  .footer-section h3 {
+    margin-bottom: 15px;
+  }
+  
+  .footer-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .footer-section ul li a:hover {
+    text-decoration: underline;
+  }
+  
+  .social-media {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding: 20px;
+    background: #F2F4F7;
+    margin-top: 40px;
+    margin: 15px;
+  }
+  
+  footer{
+    margin: 15px;
+  }
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: flex-end;
+    
+}
+
+.contact-form {
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.contact-form h2 {
+    margin: 0 0 10px 0;
+}
+
+h4{
+    padding: 10px;
+    margin: 10px;
+    gap: 10px;
+    cursor: pointer;
+}
+
+h5{
+    font-weight: 500;
+}
+
+.buyer {
+    text-decoration: none;
+    color: #1d232c;
+    display: none;
+}
+
+.buyer:hover {
+    text-decoration: underline;
+    color: #1d232c;
+}
+.buyers {
+    text-decoration: none;
+    color: #1d232c;
+    display: none;
+}
+
+.buyers:hover {
+    text-decoration: underline;
+    color: #1d232c;
+}
+.seller {
+    text-decoration: none;
+    color: #1d232c;
+    display: none;
+}
+
+.seller:hover {
+    text-decoration: underline;
+    color: #1d232c;
+}
+
+.sellers {
+    text-decoration: none;
+    color: #1d232c;
+    display: none;
+}
+
+.sellers:hover {
+    text-decoration: underline;
+    color: #1d232c;
+}
+
+
+.logistics {
+    text-decoration: none;
+    color: #1d232c;
+    display: none;
+}
+
+.logistics:hover {
+    text-decoration: underline;
+    color: #1d232c;
+}
+
+.logisticss {
+    text-decoration: none;
+    color: #1d232c;
+    display: none;
+}
+
+.logisticss:hover {
+    text-decoration: underline;
+    color: #1d232c;
+}
+
+
+
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.h4{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+ 
+
+
+@media screen and (max-width:700px) {
+    .navbar-menu-toggle {
+        display: block;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+
+}
