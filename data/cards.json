@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Article 57",
+        "images": [
+            "../assets/1.Article57.jpeg",
+            "../assets/Article57.jpeg"
+        ]
+    },
+    {
+        "name": "Article 57(1)",
+        "images": [
+            "../assets/2.Article57.jpeg",
+            "../assets/Article57.jpeg"
+        ]
+    },
+    {
+        "name": "Article 57(2)",
+        "images": [
+            "../assets/3.Article57.jpeg",
+            "../assets/Article57.jpeg"
+        ]
+    },
+    {
+        "name": "Article 56(1)(a)",
+        "images": [
+            "../assets/1.Article56(1)(a).jpeg",
+            "../assets/Article56(1)(a).jpeg"
+        ]
+    },
+    {
+        "name": "Article 56(1)(b)",
+        "images": [
+            "../assets/1.Article56(1)(b).jpeg",
+            "../assets/Article56(1)(b).jpeg"
+        ]
+    },
+    {
+        "name": "Article 56(1)(c)",
+        "images": [
+            "../assets/1.Article56(1)(c).jpeg",
+            "../assets/Article56(1)(c).jpeg"
+        ]
+    },
+    {
+        "name": "Article 58(1)(a)",
+        "images": [
+            "../assets/1.Article58(1)(a).jpeg",
+            "../assets/Article58(1)(a).jpeg"
+        ]
+    },
+    {
+        "name": "Article 58(1)(b)",
+        "images": [
+            "../assets/1.Article58(1)(b).jpeg",
+            "../assets/Article58(1)(b).jpeg"
+        ]
+    },
+    {
+        "name": "Article 58(2)",
+        "images": [
+            "../assets/1.Article58(2).jpeg",
+            "../assets/Article58(2).jpeg"
+        ]
+    }
+]
